@@ -21,38 +21,38 @@ int InputArraySize()
             Console.WriteLine("\nНеверный ввод. Пожалуйста повторите ввод.\n");
         }
     }
-    
+
     return number;
 }
 
 string[] CreateArray(int size)
 {
-    string[] array = new string[size];
+    string[] array = new string[size + 1];
+    int counter = 0;
     Console.WriteLine($"Введите {size} строк массива: ");
 
     for (int i = 0; i < size; i++)
+    {
         array[i] = Console.ReadLine()!;
+        if (array[i].Length < 4)
+            counter++;
+    }
+    array[size] = counter.ToString();
 
     return array;
 }
 
 string[] GetLessThanThreeSymbolStrings(string[] array)
 {
-    int counter = 0;
-    foreach (string s in array)
-    {
-        if (s.Length < 4)
-            counter++;
-    }
-
+    int counter = int.Parse(array[array.Length - 1]);
     string[] result = new string[counter];
     counter = 0;
 
-    foreach (string s in array)
+    for (int i = 0; i < array.Length - 1; i++)
     {
-        if (s.Length < 4)
+        if (array[i].Length < 4)
         {
-            result[counter] = s;
+            result[counter] = array[i];
             counter++;
         }
     }

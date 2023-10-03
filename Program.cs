@@ -13,9 +13,7 @@ int InputArraySize()
         {
             number = int.Parse(Console.ReadLine()!);
             if (number > 0)
-            {
                 break;
-            }
             Console.WriteLine("\nРазмер массива не может быть отрицательным числом. Пожалуйста повторите ввод.\n");
         }
         catch (Exception)
@@ -23,6 +21,7 @@ int InputArraySize()
             Console.WriteLine("\nНеверный ввод. Пожалуйста повторите ввод.\n");
         }
     }
+    
     return number;
 }
 
@@ -61,14 +60,7 @@ string[] GetLessThanThreeSymbolStrings(string[] array)
     return result;
 }
 
-void PrintArray(string[] array)
-{
-    foreach (string s in array)
-        Console.WriteLine(s);
-}
-
-int size = InputArraySize();
-string[] stringsArray = CreateArray(size);
+string[] stringsArray = CreateArray(InputArraySize());
 string[] resultString = GetLessThanThreeSymbolStrings(stringsArray);
 Console.WriteLine("\nВ исходном массиве следующие строки имеют длину меньше либо равны 3-м символам:");
-PrintArray(resultString);
+Console.WriteLine(String.Join("\n", resultString));

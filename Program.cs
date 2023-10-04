@@ -21,7 +21,7 @@ int InputArraySize()
             Console.WriteLine("\nНеверный ввод. Пожалуйста повторите ввод.\n");
         }
     }
-    
+
     return number;
 }
 
@@ -45,22 +45,29 @@ string[] GetLessThanThreeSymbolStrings(string[] array)
             counter++;
     }
 
-    string[] result = new string[counter];
-    counter = 0;
-
-    foreach (string s in array)
+    if (counter == 0)
     {
-        if (s.Length < 4)
-        {
-            result[counter] = s;
-            counter++;
-        }
+        return new string[1] { "\nВо введенном массиве нет срок имеющих длину меньшую либо равную 3-м символам.\n" };
     }
+    else
+    {
+        string[] result = new string[counter + 1];
+        result[0] = "\nВ исходном массиве следующие строки имеют длину меньшую либо равную 3-м символам:";
+        counter = 1;
 
-    return result;
+        foreach (string s in array)
+        {
+            if (s.Length < 4)
+            {
+                result[counter] = s;
+                counter++;
+            }
+        }
+
+        return result;
+    }
 }
 
 string[] stringsArray = CreateArray(InputArraySize());
 string[] resultString = GetLessThanThreeSymbolStrings(stringsArray);
-Console.WriteLine("\nВ исходном массиве следующие строки имеют длину меньше либо равны 3-м символам:");
-Console.WriteLine(String.Join("\n", resultString));
+Console.WriteLine(String.Join("\n", resultString));    // Строка не участвующая в проверке задания. Нужна только для проверки работы программы.
